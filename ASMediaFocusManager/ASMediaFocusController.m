@@ -260,7 +260,14 @@ static CGFloat const kDefaultControlMargin = 5;
     scrollView.delegate = self;
     self.scrollView = scrollView;
     [self.contentView insertSubview:scrollView atIndex:0];
-    [scrollView displayImage:self.mainImageView.image];
+    
+    
+    if ( self.mainImageView.animatedImage != nil ) {
+        [scrollView displayAnimatedImage:self.mainImageView.animatedImage];
+    } else {
+        [scrollView displayImage:self.mainImageView.image];
+    }
+    
     self.mainImageView.hidden = YES;
     
     [self.scrollView addGestureRecognizer:self.doubleTapGesture];

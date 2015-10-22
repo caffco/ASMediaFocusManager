@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MediaCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
 
 static CGFloat const kMaxAngle = 0.1;
 static CGFloat const kMaxOffset = 20;
@@ -64,10 +65,10 @@ static CGFloat const kMaxOffset = 20;
     [self addSomeRandomTransformOnThumbnailViews];
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     //return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
-     return UIInterfaceOrientationMaskAll;
+     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -98,6 +99,10 @@ static CGFloat const kMaxOffset = 20;
     
     name = self.mediaNames[index];
     url = [[NSBundle mainBundle] URLForResource:[name stringByDeletingPathExtension] withExtension:name.pathExtension];
+    
+    if ( index == 0 ) {
+        url = [NSURL URLWithString:@"https://33.media.tumblr.com/07b00df16a910359a331e158b79dfa72/tumblr_nvuw1mFBzL1qharjqo1_500.gif"];
+    }
     
     return url;
 }
@@ -157,7 +162,11 @@ static CGFloat const kMaxOffset = 20;
     cell.playView.hidden = !isVideo;
     path = [NSString stringWithFormat:@"%ld.jpg", (unsigned long)indexPath.row + 1];
     image = [UIImage imageNamed:path];
-    cell.thumbnailView.image = image;
+    if ( indexPath.row == 0 ) {
+        [cell.thumbnailView setAnimatedImage:[FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://33.media.tumblr.com/07b00df16a910359a331e158b79dfa72/tumblr_nvuw1mFBzL1qharjqo1_500.gif"]]]];
+    } else {
+        cell.thumbnailView.image = image;
+    }
     cell.thumbnailView.tag = indexPath.row + 1;
     
     return cell;

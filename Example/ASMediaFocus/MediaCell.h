@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FLAnimatedImage/FLAnimatedImageView.h>
 
 @interface MediaCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *thumbnailView;
+@property (strong, nonatomic) IBOutlet FLAnimatedImageView *thumbnailView;
 @property (strong, nonatomic) IBOutlet UIImageView *playView;
 
 + (MediaCell *)mediaCell;

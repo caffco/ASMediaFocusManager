@@ -238,7 +238,16 @@ static CGFloat const kSwipeOffset = 100;
 
     viewController.titleLabel.text = [self.delegate mediaFocusManager:self
                                       titleForView:mediaView];
-    viewController.mainImageView.image = image;
+    
+    BOOL isGif = NO;
+    
+    if ( [mediaView isKindOfClass:[FLAnimatedImageView class]] && ((FLAnimatedImageView *)mediaView).animatedImage != nil ) {
+        viewController.mainImageView.animatedImage = ((FLAnimatedImageView *)mediaView).animatedImage;
+        isGif = YES;
+    } else {
+        viewController.mainImageView.image = image;
+    }
+    
     viewController.mainImageView.contentMode = imageView.contentMode;
 
     if ([self.delegate respondsToSelector:@selector(mediaFocusManager:
@@ -253,7 +262,7 @@ static CGFloat const kSwipeOffset = 100;
 
     if ([self isVideoURL:url]) {
         [viewController showPlayerWithURL:url];
-    } else {
+    } else if ( !isGif ) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
         ^ {
             [self loadImageFromURL:url onImageView:viewController.mainImageView];

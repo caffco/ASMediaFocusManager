@@ -47,6 +47,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <FLAnimatedImage/FLAnimatedImage.h>
+
 #import "ASImageScrollView.h"
 
 #pragma mark -
@@ -124,7 +126,7 @@
         self.zoomScale = 1.0;
         
         // make a new UIImageView for the new image
-        self.zoomImageView = [[UIImageView alloc] initWithImage:image];
+        self.zoomImageView = [[FLAnimatedImageView alloc] initWithImage:image];
         [self addSubview:self.zoomImageView];        
     }
     else
@@ -133,6 +135,25 @@
     }
     
     [self configureForImageSize:image.size];
+}
+
+- (void)displayAnimatedImage:(FLAnimatedImage *)animatedImage
+{
+    if(self.zoomImageView == nil)
+    {
+        self.zoomScale = 1.0;
+        
+        // make a new UIImageView for the new image
+        self.zoomImageView = [[FLAnimatedImageView alloc] initWithImage:animatedImage.posterImage];
+        [self.zoomImageView setAnimatedImage:animatedImage];
+        [self addSubview:self.zoomImageView];
+    }
+    else
+    {
+        [self.zoomImageView setAnimatedImage:animatedImage];
+    }
+    
+    [self configureForImageSize:animatedImage.size];
 }
 
 - (void)configureForImageSize:(CGSize)imageSize

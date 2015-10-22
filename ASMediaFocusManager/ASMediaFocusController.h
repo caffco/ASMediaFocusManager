@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FLAnimatedImageView.h>
 #import "ASImageScrollView.h"
 
 @interface ASMediaFocusController : UIViewController
 
 @property (strong, nonatomic) ASImageScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIImageView *mainImageView;
+@property (strong, nonatomic) IBOutlet FLAnimatedImageView *mainImageView;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIView *accessoryView;
