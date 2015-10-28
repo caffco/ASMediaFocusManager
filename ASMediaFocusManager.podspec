@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage = "https://github.com/autresphere/ASMediaFocusManager"
   s.source = {
     :git => "https://github.com/autresphere/ASMediaFocusManager.git",
-    :tag => "0.6"
+    :branch => "master"
   }
   s.platform = :ios, '6.0'
   s.source_files = 'ASMediaFocusManager/*.{h,m}'
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency 'ASBPlayerScrubbing', '~> 0.1'
   s.dependency 'FLAnimatedImage', '~> 1.0'
-  s.dependency 'AFNetworking', '~> 2.6'
+  s.dependency 'AFNetworking', '~> 2.5'
 end
