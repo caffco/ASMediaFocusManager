@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "ASMediaFocusManager"
-  s.version = "0.6"
+  s.version = "0.6.1"
   s.license = 'MIT'
   s.summary = "Animate your iOS image and video views to fullscreen on a simple tap."
   s.authors = {
