@@ -10,6 +10,7 @@
 #import "ASMediaFocusController.h"
 #import "ASVideoBehavior.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 static CGFloat const kAnimateElasticSizeRatio = 0.03;
 static CGFloat const kAnimateElasticDurationRatio = 0.6;
@@ -239,19 +240,17 @@ static CGFloat const kSwipeOffset = 100;
     viewController.titleLabel.text = [self.delegate mediaFocusManager:self
                                       titleForView:mediaView];
     
-    BOOL isGif = NO;
-    
     if ( [mediaView isKindOfClass:[FLAnimatedImageView class]] && ((FLAnimatedImageView *)mediaView).animatedImage != nil ) {
         viewController.mainImageView.animatedImage = ((FLAnimatedImageView *)mediaView).animatedImage;
-        isGif = YES;
+    } else if ( url != nil ) {
+        [viewController.mainImageView setImageWithURL:url placeholderImage:image];
     } else {
         viewController.mainImageView.image = image;
     }
     
     viewController.mainImageView.contentMode = imageView.contentMode;
 
-    if ([self.delegate respondsToSelector:@selector(mediaFocusManager:
-            cachedImageForView:)]) {
+    if ([self.delegate respondsToSelector:@selector(mediaFocusManager:cachedImageForView:)]) {
         UIImage *image = [self.delegate mediaFocusManager:self cachedImageForView:
                           mediaView];
         if (image) {
@@ -262,11 +261,6 @@ static CGFloat const kSwipeOffset = 100;
 
     if ([self isVideoURL:url]) {
         [viewController showPlayerWithURL:url];
-    } else if ( !isGif ) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-        ^ {
-            [self loadImageFromURL:url onImageView:viewController.mainImageView];
-        });
     }
 
     return viewController;

@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency 'ASBPlayerScrubbing', '~> 0.1'
   s.dependency 'FLAnimatedImage', '~> 1.0'
+  s.dependency 'AFNetworking', '~> 2.6'
 end

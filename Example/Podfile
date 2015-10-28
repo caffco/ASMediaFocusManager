@@ -3,4 +3,5 @@
 
 pod 'ASBPlayerScrubbing'
 pod 'FLAnimatedImage'
+pod 'AFNetworking'
 
