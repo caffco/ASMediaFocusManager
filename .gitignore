@@ -7,3 +7,4 @@ build/
 *.mode2v3
 *.xcworkspace
 xcuserdata
+Example/Pods
