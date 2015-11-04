@@ -98,7 +98,8 @@ static CGFloat const kMaxOffset = 20;
     }
     
     name = self.mediaNames[index];
-    url = [[NSBundle mainBundle] URLForResource:[name stringByDeletingPathExtension] withExtension:name.pathExtension];
+    // url = [[NSBundle mainBundle] URLForResource:[name stringByDeletingPathExtension] withExtension:name.pathExtension];
+    url = [NSURL URLWithString:@"https://images.unsplash.com/photo-1440470177828-6381dc5074ba?fit=crop&fm=jpg&h=1125&ixlib=rb-0.3.5&q=80&w=1325"];
     
     if ( index == 0 ) {
         url = [NSURL URLWithString:@"https://33.media.tumblr.com/07b00df16a910359a331e158b79dfa72/tumblr_nvuw1mFBzL1qharjqo1_500.gif"];

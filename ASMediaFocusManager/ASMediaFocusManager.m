@@ -244,7 +244,27 @@ static CGFloat const kSwipeOffset = 100;
     if ( [mediaView isKindOfClass:[FLAnimatedImageView class]] && ((FLAnimatedImageView *)mediaView).animatedImage != nil ) {
         viewController.mainImageView.animatedImage = ((FLAnimatedImageView *)mediaView).animatedImage;
     } else if ( url != nil ) {
-        [viewController.mainImageView setImageWithURL:url placeholderImage:image];
+        viewController.mainImageView.image = image;
+        __weak typeof(self) weakSelf = self;
+        // Hardcoded value, I'm sorry.
+        double animationSeconds = 3 * 0.23;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(animationSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+            [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+            
+            __weak typeof(viewController) weakViewController = viewController;
+            
+            
+            [viewController.mainImageView setImageWithURLRequest:request
+                                                placeholderImage:image
+                                                        success:^(NSURLRequest *req, NSHTTPURLResponse *res, UIImage *image)
+             {
+                 [weakViewController.scrollView displayImage:image];
+                 [weakViewController.scrollView.zoomImageView sizeToFit];
+             }
+                                                         failure:nil];
+        });
     } else {
         viewController.mainImageView.image = image;
     }
@@ -401,8 +421,9 @@ static CGFloat const kSwipeOffset = 100;
         }
     }
     completion: ^ (BOOL finished) {
-        [UIView animateWithDuration:(self.elasticAnimation ? self.animationDuration *
-                                     kAnimateElasticDurationRatio / 3 : 0)
+        NSTimeInterval duration = (self.elasticAnimation ? self.animationDuration *
+                                   kAnimateElasticDurationRatio / 3 : 0);
+        [UIView animateWithDuration:duration
         animations:^ {
             CGRect frame;
 
@@ -411,8 +432,9 @@ static CGFloat const kSwipeOffset = 100;
             imageView.frame = frame;
         }
         completion: ^ (BOOL finished) {
-            [UIView animateWithDuration:(self.elasticAnimation ? self.animationDuration *
-                                         kAnimateElasticDurationRatio / 3 : 0)
+            NSTimeInterval duration = (self.elasticAnimation ? self.animationDuration *
+                                       kAnimateElasticDurationRatio / 3 : 0);
+            [UIView animateWithDuration:duration
             animations:^ {
                 CGRect frame;
 
@@ -421,8 +443,9 @@ static CGFloat const kSwipeOffset = 100;
                 imageView.frame = frame;
             }
             completion: ^ (BOOL finished) {
-                [UIView animateWithDuration:(self.elasticAnimation ? self.animationDuration *
-                                             kAnimateElasticDurationRatio / 3 : 0)
+                NSTimeInterval duration = (self.elasticAnimation ? self.animationDuration *
+                                           kAnimateElasticDurationRatio / 3 : 0);
+                [UIView animateWithDuration:duration
                 animations:^ {
                     imageView.frame = untransformedFinalImageFrame;
                 }

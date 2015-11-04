@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A09DE31BEA1D5100A80FA5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13A09DE21BEA1D5100A80FA5 /* Launch Screen.storyboard */; };
 		4A0BC97B1AC9846F000904A2 /* 3f.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4A0BC97A1AC9846F000904A2 /* 3f.mp4 */; };
 		4A0BC97E1AC9A684000904A2 /* ASVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0BC97D1AC9A684000904A2 /* ASVideoControlView.m */; };
 		4A0BC9801AC9A6AC000904A2 /* ASVideoControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0BC97F1AC9A6AC000904A2 /* ASVideoControlView.xib */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A09DE21BEA1D5100A80FA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3FD5F869702ABB49C37B7985 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4A0BC97A1AC9846F000904A2 /* 3f.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3f.mp4; sourceTree = "<group>"; };
 		4A0BC97C1AC9A684000904A2 /* ASVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASVideoControlView.h; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				4A7F15F01684635100ADC5D6 /* MainViewController.m */,
 				4A15DE4616776BE9004C6733 /* MainViewController~ipad.xib */,
 				4ABF0AF016A048E50053040A /* MainViewController~iphone.xib */,
+				13A09DE21BEA1D5100A80FA5 /* Launch Screen.storyboard */,
 				4A0BC99A1ACAF13D000904A2 /* MediaCell.h */,
 				4A0BC99B1ACAF13D000904A2 /* MediaCell.m */,
 				4A0BC99C1ACAF13D000904A2 /* MediaCell.xib */,
@@ -337,6 +340,7 @@
 				4A0BC9951ACAB6CB000904A2 /* asmedia_pause@2x.png in Resources */,
 				4A15DE7316776EC7004C6733 /* 2.jpg in Resources */,
 				4A15DE7416776EC7004C6733 /* 3.jpg in Resources */,
+				13A09DE31BEA1D5100A80FA5 /* Launch Screen.storyboard in Resources */,
 				4ABF0AF216A048E50053040A /* MainViewController~iphone.xib in Resources */,
 				4A0BC9801AC9A6AC000904A2 /* ASVideoControlView.xib in Resources */,
 				4A70C03F1ACD4E5300828AA6 /* asmedia_playbig.png in Resources */,
