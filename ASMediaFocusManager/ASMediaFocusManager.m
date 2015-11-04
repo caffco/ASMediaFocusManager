@@ -104,7 +104,8 @@ static CGFloat const kSwipeOffset = 100;
     [doneButton sizeToFit];
     doneButton.center = CGPointMake(
                             focusViewController.accessoryView.bounds.size.width -
-                            doneButton.bounds.size.width / 2 - 10, doneButton.bounds.size.height / 2 + 5);
+                            doneButton.bounds.size.width / 2 - 10,
+                            doneButton.bounds.size.height / 2 + 26);
     doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
                                   UIViewAutoresizingFlexibleBottomMargin;
     [focusViewController.accessoryView addSubview:doneButton];
