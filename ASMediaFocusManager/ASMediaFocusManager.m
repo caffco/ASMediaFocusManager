@@ -97,6 +97,7 @@ static CGFloat const kSwipeOffset = 100;
     UIButton *doneButton;
 
     doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
     [doneButton setTitle:@"✕" forState:UIControlStateNormal];
     [doneButton addTarget:self action:@selector(handleDefocusGesture:)
      forControlEvents:UIControlEventTouchUpInside];
