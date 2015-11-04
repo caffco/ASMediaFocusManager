@@ -262,6 +262,32 @@ static CGFloat const kSwipeOffset = 100;
              {
                  [weakViewController.scrollView displayImage:image];
                  [weakViewController.scrollView.zoomImageView sizeToFit];
+                 
+                 CGRect frame  = CGRectMake(
+                                            - weakViewController.scrollView.bounds.size.width/2,
+                                            - weakViewController.scrollView.bounds.size.height/2,
+                                            weakViewController.scrollView.bounds.size.width,
+                                            weakViewController.scrollView.bounds.size.height
+                                            );
+                 CGFloat scale = weakViewController.scrollView.maximumZoomScale;
+                 
+                 weakViewController.scrollView.zoomScale = scale;
+                 [weakViewController.scrollView layoutIfNeeded];
+                 if(scale == weakViewController.scrollView.maximumZoomScale)
+                 {
+                     [weakViewController.scrollView scrollRectToVisible:frame
+                                                               animated:NO];
+                 }
+                 
+                 frame = CGRectZero;
+                 scale = weakViewController.scrollView.minimumZoomScale;
+                 
+                 weakViewController.scrollView.zoomScale = scale;
+                 [weakViewController.scrollView layoutIfNeeded];
+                 if(scale == weakViewController.scrollView.maximumZoomScale)
+                 {
+                     [weakViewController.scrollView scrollRectToVisible:frame animated:NO];
+                 }
              }
                                                          failure:nil];
         });
